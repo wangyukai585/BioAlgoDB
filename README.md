@@ -72,10 +72,33 @@ npm run build
 - 多对多关系使用连接表复合主键（algorithm_paper、tool_paper），避免冗余与异常。  
 因此各关系满足第三范式（3NF）。
 
-## Docker
-`docker-compose.yml` 启动 MySQL + backend(gunicorn) + nginx(服务 dist)。流程：  
+## Docker（强烈推荐，无需本地安装 MySQL）
+`docker-compose.yml` 启动 MySQL + backend(gunicorn) + nginx(服务 dist)，一键起全栈。
+
+步骤：
+1) 构建前端产物（Nginx 静态服务）  
 ```bash
-npm run build            # 先构建前端
-docker compose up -d     # 空数据卷会自动导入 db/init.sql
+npm install          # 首次需要
+npm run build        # 生成 dist/
 ```
-如需清空数据，可 `docker compose down -v`（删除数据卷，谨慎）。***
+2) 启动所有容器  
+```bash
+docker compose up -d
+```
+- 首次且数据卷为空时，会自动导入 `db/init.sql`（建表+种子数据）。
+- 后端镜像按 Dockerfile 构建，Nginx 用官方镜像挂载 dist 与 nginx.conf。
+
+3) 访问  
+- 前端：http://localhost  
+- API（经 Nginx 代理）：http://localhost/api/health , /api/stats 等
+
+4) 常用命令  
+- 查看状态：`docker compose ps`  
+- 查看日志：`docker compose logs backend` / `docker compose logs db` / `docker compose logs frontend`  
+- 重启服务：`docker compose restart backend frontend`（db 通常无需重启）
+
+5) 重置数据（谨慎，会删除数据库卷）  
+```bash
+docker compose down -v
+docker compose up -d
+```

@@ -17,6 +17,23 @@
       <div v-if="(chartData?.length || 0) > 0" ref="chartRef" class="chart"></div>
       <div v-else class="chart-placeholder">No data available</div>
     </section>
+
+    <section class="info">
+      <h2>About this database</h2>
+      <p>
+        BioAlgoDB curates core bioinformatics problems, algorithms, tools, labs, and papers. Data follows 3NF design for clean querying.
+      </p>
+      <div class="api-card">
+        <h3>API quickstart</h3>
+        <ul>
+          <li>Health: <code>/api/health</code></li>
+          <li>Stats: <code>/api/stats</code></li>
+          <li>Problems: <code>/api/problems</code></li>
+          <li>Algorithms: <code>/api/algorithms?q=keyword&amp;problem_id=</code></li>
+          <li>Detail: <code>/api/algorithms/&lt;id&gt;</code></li>
+        </ul>
+      </div>
+    </section>
   </div>
 </template>
 
@@ -147,5 +164,31 @@ onBeforeUnmount(() => {
   justify-content: center;
   color: #666;
   font-size: 14px;
+}
+.info {
+  margin-top: 24px;
+  background: #fff;
+  border: 1px solid #e5eaf5;
+  border-radius: 10px;
+  padding: 16px;
+}
+.info h2 {
+  margin-top: 0;
+}
+.api-card {
+  margin-top: 12px;
+  padding: 12px;
+  background: #f7f9fc;
+  border: 1px solid #e5eaf5;
+  border-radius: 8px;
+}
+.api-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.api-card code {
+  background: #eef1f7;
+  padding: 2px 4px;
+  border-radius: 4px;
 }
 </style>
