@@ -102,3 +102,22 @@ docker compose up -d
 docker compose down -v
 docker compose up -d
 ```
+
+### 从 GitHub 拉取并一键运行（老师视角）
+```bash
+# 1) 拉取代码
+git clone https://github.com/wangyukai585/BioAlgoDB.git
+cd BioAlgoDB
+
+# 2) 构建前端
+npm install
+npm run build
+
+# 3) 启动全栈（MySQL + 后端 + Nginx）
+docker compose up -d
+
+# 4) 访问
+# 前端：http://localhost
+# API 示例：http://localhost/api/health , http://localhost/api/stats
+```
+首次启动若数据卷为空，会自动导入 `db/init.sql`。若需重置数据，可执行 `docker compose down -v` 后再 `docker compose up -d`。***
