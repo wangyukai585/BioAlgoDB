@@ -1,6 +1,6 @@
 # BioAlgoDB
 
-Bioinformatics Algorithms Database — Yukai Wang（数据库原理课程项目）。收录典型生物信息学问题、算法、工具、实验室与文献，提供 REST API 与 Vue 前端，支持统计、列表与详情浏览。
+Bioinformatics Algorithms Database 收录典型生物信息学问题、算法、工具、实验室与文献，提供 REST API 与 Vue 前端，支持统计、列表与详情浏览。
 
 ## 后端部署（Flask）
 1) 创建虚拟环境  
